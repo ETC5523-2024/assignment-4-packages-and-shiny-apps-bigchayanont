@@ -1,0 +1,43 @@
+#' Spotify Audio Features Dataset
+#'
+#' This dataset contains audio features for various songs sourced from Spotify, including metadata and audio characteristics.
+#' It represents unique song entries, with a total of 29,386 rows and 22 columns.
+#'
+#' The dataset was cleaned to retain only one row per song (`song_id`), where the first occurrence of each song was selected.
+#'
+#' @docType data
+#' @usage data(audio_features)
+#' @format A data frame with 29,386 rows and 22 variables:
+#' \describe{
+#'   \item{song_id}{Unique identifier for each song.}
+#'   \item{performer}{Name of the artist or group performing the song.}
+#'   \item{song}{Title of the song.}
+#'   \item{spotify_genre}{Genre(s) of the song, represented as a list (may include multiple genres).}
+#'   \item{spotify_track_id}{Unique identifier for the track in Spotify's database.}
+#'   \item{spotify_track_preview_url}{URL for a preview of the track.}
+#'   \item{spotify_track_duration_ms}{Numeric; Duration of the track in milliseconds.}
+#'   \item{spotify_track_explicit}{Logical; Indicates if the track contains explicit content (TRUE or FALSE, may be NA).}
+#'   \item{spotify_track_album}{Title of the album that includes the track.}
+#'   \item{danceability}{Numeric; Measure of how suitable a track is for dancing, on a scale from 0.0 to 1.0.}
+#'   \item{energy}{Numeric; Measure of intensity and activity, on a scale from 0.0 to 1.0.}
+#'   \item{key}{Numeric; Key of the track, represented as an integer.}
+#'   \item{loudness}{Numeric; Overall loudness of a track in decibels.}
+#'   \item{mode}{Numeric; Modality of the track, with 1 indicating major and 0 indicating minor.}
+#'   \item{speechiness}{Numeric; Measure of the presence of spoken words in a track, on a scale from 0.0 to 1.0.}
+#'   \item{acousticness}{Numeric; Measure of the acoustic nature of a track, on a scale from 0.0 to 1.0.}
+#'   \item{instrumentalness}{Numeric; Measure of whether a track contains no vocals, on a scale from 0.0 to 1.0.}
+#'   \item{liveness}{Numeric; Measure of the presence of an audience in the recording, on a scale from 0.0 to 1.0.}
+#'   \item{valence}{Numeric; Measure of musical positiveness or happiness, on a scale from 0.0 to 1.0.}
+#'   \item{tempo}{Numeric; Tempo of the track in beats per minute.}
+#'   \item{time_signature}{Numeric; Time signature of the track, represented as an integer.}
+#'   \item{spotify_track_popularity}{Numeric; Popularity of the track on a scale from 0 to 100, where 100 is the most popular.}
+#' }
+#'
+#' @importFrom dplyr group_by filter row_number ungroup
+#' @importFrom readr read_csv
+#'
+#' @source Data sourced from the [TidyTuesday project](https://github.com/rfordatascience/tidytuesday/tree/master/data/2021/2021-09-14) and Spotify's Web API.
+#' @examples
+#' data(audio_features)
+#' head(audio_features)
+"audio_features"

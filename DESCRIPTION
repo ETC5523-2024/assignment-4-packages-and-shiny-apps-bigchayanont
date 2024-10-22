@@ -1,11 +1,23 @@
-Package: asm4
-Title: What the Package Does (One Line, Title Case)
+Package: billboardAnalysis
+Title: Song Billboard Analysis in the 2010s
 Version: 0.0.0.9000
 Authors@R: 
-    person("First", "Last", , "first.last@example.com", role = c("aut", "cre"),
-           comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: What the package does (one paragraph).
+    person("Chayanont", "Piyawatcharvijit", , "big.chayanont@gmail.com", role = c("aut", "cre"))
+Description: The R packags integrates Billboard chart data and Spotify audio features into an interactive Shiny dashboard. This dashboard allows users to explore song trends from the 2010s, focusing on audio characteristics like energy, acousticness, danceability, and speechiness. It features interactive plots, including year-wise trends of audio features, feature distributions for long-lasting tracks, and comparisons of features across genres. The dashboard is designed to provide insights into the evolution of music features over time, with a user-friendly interface and help mode for navigating the features.
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.1
+Suggests: 
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr
+Imports: 
+    shiny,
+    dplyr,
+    stringr,
+    lubridate,
+    readr
+Depends: 
+    R (>= 2.10)
+LazyData: true
