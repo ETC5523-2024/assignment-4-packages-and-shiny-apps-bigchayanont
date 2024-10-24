@@ -1,17 +1,19 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# asm4
+# billboardAnalysis
 
 <!-- badges: start -->
 <!-- badges: end -->
 
-The goal of asm4 is to …
+The goal of this R package is to create an interactive Shiny dashboard
+that lets users explore Billboard and Spotify data from the 2010s,
+focusing on trends in audio features like energy, acousticness, and
+danceability.
 
 ## Installation
 
-You can install the development version of asm4 from
-[GitHub](https://github.com/) with:
+You can install the development version of billboardAnalysis with:
 
 ``` r
 # install.packages("devtools")
@@ -20,33 +22,74 @@ devtools::install_github("ETC5523-2024/assignment-4-packages-and-shiny-apps-bigc
 
 ## Example
 
-This is a basic example which shows you how to solve a common problem:
-
 ``` r
-library(asm4)
+library(billboardAnalysis)
 ## basic example code
 ```
 
-What is special about using `README.Rmd` instead of just `README.md`?
-You can include R chunks like so:
+To access to the dataset.
+
+**Billboard Dataset:**
 
 ``` r
-summary(cars)
-#>      speed           dist       
-#>  Min.   : 4.0   Min.   :  2.00  
-#>  1st Qu.:12.0   1st Qu.: 26.00  
-#>  Median :15.0   Median : 36.00  
-#>  Mean   :15.4   Mean   : 42.98  
-#>  3rd Qu.:19.0   3rd Qu.: 56.00  
-#>  Max.   :25.0   Max.   :120.00
+head(audio_features)
+#> # A tibble: 6 × 22
+#>   song_id  performer song  spotify_genre spotify_track_id spotify_track_previe…¹
+#>   <chr>    <chr>     <chr> <chr>         <chr>            <chr>                 
+#> 1 -twisti… Bill Bla… -twi… []            <NA>             <NA>                  
+#> 2 ¿Dònde … Augie Ri… ¿Dòn… ['novelty']   <NA>             <NA>                  
+#> 3 ......A… Andy Wil… ....… ['adult stan… 3tvqPPpXyIgKrm4… https://p.scdn.co/mp3…
+#> 4 ...And … Sandy Ne… ...A… ['rock-and-r… 1fHHq3qHU8wpRKH… <NA>                  
+#> 5 ...Baby… Britney … ...B… ['dance pop'… 3MjUtNVVq3C8Fn0… https://p.scdn.co/mp3…
+#> 6 ...Read… Taylor S… ...R… ['pop', 'pos… 2yLa0QULdQr0qAI… <NA>                  
+#> # ℹ abbreviated name: ¹​spotify_track_preview_url
+#> # ℹ 16 more variables: spotify_track_duration_ms <dbl>,
+#> #   spotify_track_explicit <lgl>, spotify_track_album <chr>,
+#> #   danceability <dbl>, energy <dbl>, key <dbl>, loudness <dbl>, mode <dbl>,
+#> #   speechiness <dbl>, acousticness <dbl>, instrumentalness <dbl>,
+#> #   liveness <dbl>, valence <dbl>, tempo <dbl>, time_signature <dbl>,
+#> #   spotify_track_popularity <dbl>
 ```
 
-You’ll still need to render `README.Rmd` regularly, to keep `README.md`
-up-to-date. `devtools::build_readme()` is handy for this.
+**Song features from Spotify Dataset:**
 
-You can also embed plots, for example:
+``` r
+head(billboard)
+#> # A tibble: 6 × 11
+#>   url                  week_id    week_position song  performer song_id instance
+#>   <chr>                <date>             <dbl> <chr> <chr>     <chr>      <dbl>
+#> 1 http://www.billboar… 1965-07-17            34 Don'… Patty Du… Don't …        1
+#> 2 http://www.billboar… 1965-07-24            22 Don'… Patty Du… Don't …        1
+#> 3 http://www.billboar… 1965-07-31            14 Don'… Patty Du… Don't …        1
+#> 4 http://www.billboar… 1965-08-07            10 Don'… Patty Du… Don't …        1
+#> 5 http://www.billboar… 1965-08-14             8 Don'… Patty Du… Don't …        1
+#> 6 http://www.billboar… 1965-08-21             8 Don'… Patty Du… Don't …        1
+#> # ℹ 4 more variables: previous_week_position <dbl>, peak_position <dbl>,
+#> #   weeks_on_chart <dbl>, year <dbl>
+```
 
-<img src="man/figures/README-pressure-1.png" width="100%" />
+**A combination of billboard and spotify dataset in long format:**
 
-In that case, don’t forget to commit and push the resulting figure
-files, so they display on GitHub and CRAN.
+``` r
+head(feature_long)
+#> # A tibble: 6 × 20
+#>   url             week_id    week_position song_id instance weeks_on_chart  year
+#>   <chr>           <date>             <dbl> <chr>      <dbl>          <dbl> <dbl>
+#> 1 http://www.bil… 2010-06-26            67 Beauti…        1              1  2010
+#> 2 http://www.bil… 2010-06-26            67 Beauti…        1              1  2010
+#> 3 http://www.bil… 2010-06-26            67 Beauti…        1              1  2010
+#> 4 http://www.bil… 2010-06-26            67 Beauti…        1              1  2010
+#> 5 http://www.bil… 2010-06-26            67 Beauti…        1              1  2010
+#> 6 http://www.bil… 2010-06-26            67 Beauti…        1              1  2010
+#> # ℹ 13 more variables: spotify_genre <chr>, spotify_track_id <chr>,
+#> #   spotify_track_preview_url <chr>, spotify_track_duration_ms <dbl>,
+#> #   spotify_track_explicit <lgl>, spotify_track_album <chr>, tempo <dbl>,
+#> #   time_signature <dbl>, spotify_track_popularity <dbl>, song <chr>,
+#> #   performer <chr>, features <chr>, value <dbl>
+```
+
+To access to the shiny dashboard
+
+``` r
+run_app()
+```

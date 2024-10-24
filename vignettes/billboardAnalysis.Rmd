@@ -1,0 +1,54 @@
+---
+title: "Song Billboard Analysis in the 2010s"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Song Billboard Analysis in the 2010s}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(billboardAnalysis)
+```
+
+# Introduction
+
+This vignette presents an analysis of songs that charted on Billboard throughout the 2010s. The goal of this analysis is to understand the trends in audio features of popular songs and their relationship with chart performance.
+
+# Data Overview
+
+The analysis utilizes two primary datasets:
+- **Billboard Dataset:** Contains information about songs that appeared on the Billboard charts, including song titles, performers, chart positions, and weeks on the chart.
+- **Spotify Dataset:** Includes detailed audio features of songs, such as energy, acousticness, danceability, and speechiness, along with their popularity scores.
+
+# Methodology
+
+The analysis follows these key steps:
+
+1. **Data Preparation:**
+   - Import the necessary libraries and datasets.
+   - Clean and preprocess the data to ensure accuracy and consistency.
+
+2. **Feature Exploration:**
+   - Visualize the distributions of audio features over the years using line plots.
+   - Create scatter plots to examine the relationship between audio features and track popularity.
+
+3. **Analysis of Long-Lasting Tracks:**
+   - Identify tracks that remained on the Billboard charts for more than 52 weeks.
+   - Investigate how the audio features of these long-lasting tracks differ from those that did not perform as well.
+
+4. **Dynamic User Interface:**
+   - Develop an interactive Shiny application to allow users to explore the data, select features, and visualize relationships dynamically.
+
+# Key Findings
+
+- **Trends in Audio Features:** The analysis revealed significant trends in audio features, with variations in energy and danceability observed across different years.
+- **Correlation with Popularity:** Certain audio features, particularly energy and danceability, exhibited strong correlations with song popularity, suggesting that upbeat and energetic songs tend to perform better on the charts.
+- **Long-Lasting Tracks:** The characteristics of tracks that remained on the charts for extended periods showed distinct patterns, highlighting the elements that contribute to a song's longevity in the competitive music landscape.

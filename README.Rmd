@@ -13,16 +13,16 @@ knitr::opts_chunk$set(
 )
 ```
 
-# asm4
+# billboardAnalysis
 
 <!-- badges: start -->
 <!-- badges: end -->
 
-The goal of asm4 is to ...
+The goal of this R package is to create an interactive Shiny dashboard that lets users explore Billboard and Spotify data from the 2010s, focusing on trends in audio features like energy, acousticness, and danceability.
 
 ## Installation
 
-You can install the development version of asm4 from [GitHub](https://github.com/) with:
+You can install the development version of billboardAnalysis with:
 
 ``` r
 # install.packages("devtools")
@@ -31,25 +31,35 @@ devtools::install_github("ETC5523-2024/assignment-4-packages-and-shiny-apps-bigc
 
 ## Example
 
-This is a basic example which shows you how to solve a common problem:
-
 ```{r example}
-library(asm4)
+library(billboardAnalysis)
 ## basic example code
 ```
 
-What is special about using `README.Rmd` instead of just `README.md`? You can include R chunks like so:
+To access to the dataset. 
 
-```{r cars}
-summary(cars)
+**Billboard Dataset:**
+
+```{r}
+head(audio_features)
 ```
 
-You'll still need to render `README.Rmd` regularly, to keep `README.md` up-to-date. `devtools::build_readme()` is handy for this.
+**Song features from Spotify Dataset:**
 
-You can also embed plots, for example:
-
-```{r pressure, echo = FALSE}
-plot(pressure)
+```{r}
+head(billboard)
 ```
 
-In that case, don't forget to commit and push the resulting figure files, so they display on GitHub and CRAN.
+**A combination of billboard and spotify dataset in long format:** 
+
+```{r}
+head(feature_long)
+```
+
+
+To access to the shiny dashboard
+
+```{r eval=FALSE}
+run_app()
+```
+

@@ -3,7 +3,7 @@ Title: Song Billboard Analysis in the 2010s
 Version: 0.0.0.9000
 Authors@R: 
     person("Chayanont", "Piyawatcharvijit", , "big.chayanont@gmail.com", role = c("aut", "cre"))
-Description: The R packags integrates Billboard chart data and Spotify audio features into an interactive Shiny dashboard. This dashboard allows users to explore song trends from the 2010s, focusing on audio characteristics like energy, acousticness, danceability, and speechiness. It features interactive plots, including year-wise trends of audio features, feature distributions for long-lasting tracks, and comparisons of features across genres. The dashboard is designed to provide insights into the evolution of music features over time, with a user-friendly interface and help mode for navigating the features.
+Description: The R packages integrates Billboard chart data and Spotify audio features into an interactive Shiny dashboard. This dashboard allows users to explore song trends from the 2010s, focusing on audio characteristics like energy, acousticness, danceability, and speechiness. It features interactive plots, including year-wise trends of audio features, feature distributions for long-lasting tracks, and comparisons of features across genres. The dashboard is designed to provide insights into the evolution of music features over time, with a user-friendly interface and help mode for navigating the features.
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
@@ -17,7 +17,8 @@ Imports:
     dplyr,
     stringr,
     lubridate,
-    readr
+    readr,
+    tidyr
 Depends: 
     R (>= 2.10)
 LazyData: true

@@ -1,20 +1,15 @@
-
 library(shiny)
 library(shinydashboard) # If using shinydashboard
 library(tidyverse)
 library(plotly)
-library(visdat)
-library(tidyverse)
-library(knitr)
-library(reshape2)
-library(patchwork)
-library(kableExtra)
 library(DT)
 library(shinyWidgets)
+
 
 billboard <- billboardAnalysis::billboard
 
 ui <- dashboardPage(
+  skin = "green",
   dashboardHeader(title = "Song Billboard Analysis in the 2010s",
                   # Place the switch inside the header
                   tags$li(
@@ -52,7 +47,25 @@ ui <- dashboardPage(
           font-size: 10px;
         }
       }
+
+      .irs--shiny .irs-from, .irs--shiny .irs-to, .irs--shiny .irs-single{
+      background-color: #A4D3A3;
+      }
+
+      .irs--shiny .irs-bar{
+      background: #A4D3A3;
+      }
+
+      .box.box-solid.box-primary  {
+        border: 1px solid #A4D3A3;
+      }
     ")),
+    tags$head(tags$style(HTML("
+      .box.box-solid.box-primary>.box-header {
+        background-color: #A4D3A3;
+        color: white;
+      }
+    "))),
     fluidRow(
       column(8,
              tabItems(
@@ -296,35 +309,33 @@ server <- function(input, output, session) {
 
 output$scatterPlot <- renderPlotly({
     genre_data <- feature_long_reactive() %>%
-      #filter(is.null(input$features) | length(input$features) == 0 | features %in% input$features) |>
       filter(features %in% c("energy", "acousticness", "danceability", "speechiness")) %>%
       mutate(extracted_genre = str_extract_all(spotify_genre, "'([^']*)'")) %>%
       unnest(extracted_genre) %>%
       mutate(extracted_genre = gsub("'", "", extracted_genre)) %>%
       group_by(extracted_genre, features) %>%
       summarize(n = n(),
-                mean_value = round(mean(value, na.rm = TRUE),2),
+                mean_value = mean(value, na.rm = TRUE),
                 Avg_Popularity = round(mean(spotify_track_popularity, na.rm = TRUE),2),
                 .groups = "drop") %>%
-      pivot_wider(names_from = features,
-                  values_from = mean_value) %>%
+      pivot_wider(names_from = features, values_from = mean_value) %>%
       arrange(-n) %>%
-      head(50) %>% #getting top 50
+      head(50) %>%
       na.omit()
 
     # Calculate correlation between selected x and y variables
     correlation <- cor(genre_data[[input$x_var]], genre_data[[input$y_var]])
 
-    # Create ggplot with dynamic x and y variables
-    p <- ggplot(genre_data, aes_string(x = input$x_var,
-                                       y = input$y_var,
-                                       group = "extracted_genre",
-                                       color = "Avg_Popularity")) +
+    # Create ggplot with dynamic x and y variables using `aes()` and `sym()`
+    p <- ggplot(genre_data, aes(x = !!sym(input$x_var),
+                                y = !!sym(input$y_var),
+                                group = extracted_genre,
+                                color = Avg_Popularity)) +
       geom_point(size = 3, alpha = 0.7) +
+      scale_color_gradient(low = "black", high = "#A4D3A3") +
       labs(x = input$x_var, y = input$y_var) +
       theme_minimal()
-
-    # Convert ggplot to plotly
+      # Convert ggplot to plotly
     ggplotly(p) %>%
       layout(
         hovermode = "closest",

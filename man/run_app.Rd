@@ -2,7 +2,7 @@
 % Please edit documentation in R/run-app.R
 \name{run_app}
 \alias{run_app}
-\title{The App}
+\title{Launch Billboard Analysis Shiny App}
 \usage{
 run_app()
 }
@@ -10,7 +10,7 @@ run_app()
 Nothing
 }
 \description{
-A short description...
+This function launches a Shiny application designed to provide interactive visualizations and analysis of Billboard and Spotify data. Users can explore audio features, chart trends, and other insights related to popular music.
 }
 \examples{
 \dontrun{
