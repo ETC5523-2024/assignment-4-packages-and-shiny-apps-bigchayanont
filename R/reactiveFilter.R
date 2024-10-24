@@ -14,9 +14,9 @@
 #'     \item If the `performer` input is not empty, rows where the `performer` matches any of the values in the input.
 #'   }
 #'
-#' @import shiny
-#' @import dplyr
-#' @import stringr
+#' @importFrom shiny reactive
+#' @importFrom dplyr filter
+#' @importFrom stringr str_detect
 #'
 #' @examples
 #' # Assuming 'data' is a data frame with 'year' and 'performer' columns
